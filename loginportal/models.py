@@ -13,3 +13,4 @@ class user(models.Model):
     email = models.CharField(max_length=40) # 书籍价格
     passwordhash = models.CharField(max_length=32) # 出版社名称
     reg_date = models.DateField()
+    sth_to_say = models.CharField(max_length=100)
