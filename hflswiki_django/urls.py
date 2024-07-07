@@ -21,3 +21,4 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('login.php/', include(loginurl)),
 ]
+#urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)#

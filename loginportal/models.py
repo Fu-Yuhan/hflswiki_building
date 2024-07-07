@@ -2,15 +2,18 @@ from django.db import models
 
 # Create your models here.
 from django.db import models
-
+from django.contrib.auth.models import User
 
 class Test(models.Model):
     name = models.CharField(max_length=20)
 
-class user(models.Model):
-    id = models.AutoField(primary_key=True) # id 会自动创建,可以手动写入
-    name = models.CharField(max_length=32) # 书籍名称
-    email = models.CharField(max_length=40) # 书籍价格
-    passwordhash = models.CharField(max_length=32) # 出版社名称
-    reg_date = models.DateField()
-    sth_to_say = models.CharField(max_length=100)
+class UserExtra(models.Model):
+    id = models.AutoField(primary_key=True)
+    BaseInfo = models.OneToOneField(User, on_delete=models.CASCADE)
+    sth_to_say = models.CharField(max_length=50, null=True)
+    level = models.IntegerField(null=True)
+    coin = models.IntegerField(null=True)
+    #followers = models.ManyToManyField("self", related_name="followed_by", blank=True)
+    #followed_by = models.ManyToManyField("self", related_name="followers", blank=True)
+    type = models.CharField(max_length=20, null=True)
+    disabled = models.BooleanField(default=False)

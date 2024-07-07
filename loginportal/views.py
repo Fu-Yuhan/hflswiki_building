@@ -1,4 +1,9 @@
 from django.shortcuts import render, redirect
+# 认证模块
+from django.contrib import auth
+from loginportal import models
+# 对应数据库
+from django.contrib.auth.models import User
 
 # Create your views here.
 def login(request):
@@ -7,11 +12,29 @@ def login(request):
     elif request.method == 'POST':
             username = request.POST.get('username')
             password = request.POST.get('password')
-            if username == 'admin' and password == 'admin':
-                condition = True
-                return render(request, 'login.html', {'username_correct': condition})
-            else:
-                return redirect('/index.php')
+            valid_num = request.POST.get("valid_num")
+            keep_str = request.session.get("keep_str")
+            user_obj = auth.authenticate(username=username, password=password)
+            print(user_obj.username)
+            if valid_num.upper() != keep_str.upper():
+                return render(request, 'login.html', {'error': '验证码错误'})
+                #验证码
+            if not user_obj :
+                user_obj = auth.authenticate(email=username, password=password)
+                #邮箱登录
+            if not user_obj :
+                return render(request, 'login.html', {'error': '用户名或密码错误'})
+                #用户名或密码验证
+                obj = models.UserExtra.objects.filter(BaseInfo=User_obj).first()
+                if obj.disabled  :
+                    return render(request, 'login.html', {'error': '该用户已被封号'})
+
+                path = request.GET.get("next") or "/index/"
+                print(path)
+                auth.login(request, user_obj)
+                return redirect(path)
+
+
 
 def signup(request):
     if request.method == 'GET':
@@ -20,4 +43,9 @@ def signup(request):
         username = request.POST.get('username')
         useremail= request.POST.get('useremail')
         password = request.POST.get('password')
+        if  User.filter(username=username).exists():
+                return render(request, 'signup.html', {'error': '用户名已存在'})
+        obj = User.objects.create_user (username=username, password=password, email=useremail)
+        models.UserExtra.objects.create(BaseInfo = obj, sth_to_say = "这个人很懒，什么也没有留下", level = 0, coin = 0, type="")
+        auth.login(request, obj)
         return render(request, 'signup.html', {'username': username, 'useremail': useremail, 'password': password})
