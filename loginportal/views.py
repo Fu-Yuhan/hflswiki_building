@@ -10,6 +10,7 @@ def login(request):
     if request.method == 'GET':
         next=request.GET.get("next")
         if next:
+            request.session["next"] = next
             return render(request, 'login.html', {'next':next}))
 
         return render(request, 'login.html')
@@ -17,10 +18,10 @@ def login(request):
 
             username = request.POST.get('username')
             password = request.POST.get('pwd')
-            #if not username:
-                    #return render(request, 'login.html', {'error': '用户名不能为空'})
-            #if not password:
-                    #return render(request, 'login.html', {'error': '密码不能为空'})
+            if not username:
+                    return render(request, 'login.html', {'error': '用户名不能为空'})
+            if not password:
+                    return render(request, 'login.html', {'error': '密码不能为空'})
             print(username)
             print(password)
             #valid_num = request.POST.get("valid_num")
@@ -45,11 +46,12 @@ def login(request):
                 if obj.disabled  :
                     return render(request, 'login.html', {'error': '该用户已被封号'})
 
-                path = request.GET.get("next") or "/index/"
+                path = request.session.get('next') or "/index/"
+                del request.session["next"]
                 print(path)
 
                 auth.login(request, user_obj)
-                return Http
+                return redirect(path)
 
 
 
