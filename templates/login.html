@@ -8,9 +8,9 @@
     <script src="/static/js/bootstrap.js"></script>
     <script src="/static/js/jquery.min.js"></script>
     <style>
-        body {
+        .body {
             background-color: #f8f9fa;
-            background-image: url('background-image.jpg');
+            background-image: url('/static/img/background-image.jpg');
             background-size: cover;
             background-position: center;
         }
@@ -21,13 +21,16 @@
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
+
     </style>
 </head>
 <body>
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-4 offset-md-4">
-                <form class="login-form" method="post" action="/login.php">
+        <div class="body"> >
+        <div class="row justify-content-center align-items-center" style="height: 100vh">
+            <div class="col-sm-4 "></div>
+            <div class="col-sm-4 ">
+                <form class="login-form" method="post" action="/login.php/">
                     {% csrf_token %}
                     <h2 class="text-center mb-4">Login</h2>
                     <div class="form-group">
@@ -50,6 +53,7 @@
                     <p class="text-center mt-3">Don't have an account? <a href="/login.php/signup/">Register</a></p>
                 </form>
             </div>
+        </div>
         </div>
     </div>
 </body>
