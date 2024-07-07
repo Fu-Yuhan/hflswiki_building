@@ -21,7 +21,9 @@
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
-
+        #loginbox {
+            margin-top: 100px;
+        }
     </style>
 </head>
 <body>
@@ -29,28 +31,28 @@
         <div class="body"> >
         <div class="row justify-content-center align-items-center" style="height: 100vh">
             <div class="col-sm-4 "></div>
-            <div class="col-sm-4 ">
+            <div class="col-sm-4" id="loginbox">
                 <form class="login-form" method="post" action="/login.php/">
                     {% csrf_token %}
-                    <h2 class="text-center mb-4">Login</h2>
+                    <h2 class="text-center mb-4">登录</h2>
                     <div class="form-group">
                         <label for="username">用户名或邮箱</label>
-                        <input type="text" class="form-control" id="username" name="用户名或邮箱" required>
+                        <input type="text" class="form-control" id="username" name="username" required>
                     </div>
                     <div class="form-group">
                         <label for="password">密码</label>
-                        <input type="password" class="form-control" id="password" name="密码" required>
+                        <input type="password" class="form-control" id="password" name="pwd" required>
                     </div>
                     {% if error %}
                         <div class="alert alert-danger">
                             {{ error }}
                         </div>
                     {% endif %}
-                    <div class="alert-warning">
-
-                    </div>
                     <button type="submit" class="btn btn-primary btn-block">Login</button>
-                    <p class="text-center mt-3">Don't have an account? <a href="/login.php/signup/">Register</a></p>
+                    {% if next %}
+                    <botton type="button" class="btn btn-danger btn-block" onclick="location.href='{{ next }}'">返回</botton>
+                    {% endif %}
+                    <p class="text-center mt-3">还没账户？<a href="/login.php/signup/">注册</a></p>
                 </form>
             </div>
         </div>
