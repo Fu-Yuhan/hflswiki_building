@@ -1,0 +1,97 @@
+.footer{--footer-bg:transparent;--footer-color:#8ad1c2;}body{--theme-color:#8491c9;--focus-shadow-color:rgba(132,145,201,.4);--focus-color-opacity1:rgba(132,145,201,.1);--mian-max-width:1300px;}body.dark-theme{--theme-color:#f9f9f9;--focus-shadow-color:rgba(249,249,249,.4);--focus-color-opacity1:rgba(249,249,249,.1);}@font-face{
+font-family:'qst';
+src:  url('https://bvipc.com/zt/qst.tff');
+src:  url('https://bvipc.com/zt/qst.eot');
+src:  url('https://bvipc.com/zt/qst.svg');
+src:  url('https://bvipc.com/zt/qst.woff');
+src:  url('https://bvipc.com/zt/qst.woff2');
+}
+@font-face{
+font-family:oswald;
+src:url(https://cdn.jsdelivr.net/gh/emeomo/vieu/web.woff2)
+}
+body{
+font-family:oswald,'qst2';
+}
+/** 鼠标样式 开始**/
+
+/** 普通指针样式**/
+
+body {
+
+cursor: url(https://cdn.jsdelivr.net/gh/emeomo/vieu/S1.cur), default;
+
+}
+
+/** 链接指针样式**/
+
+a:hover{cursor:url(https://cdn.jsdelivr.net/gh/emeomo/vieu/S2.cur), pointer;}
+
+/** 鼠标样式 结束**/
+/* logo扫光 */
+
+.navbar-brand{position:relative;overflow:hidden;margin: 0px 0 0 0px;}.navbar-brand:before{content:""; position: absolute; left: -665px; top: -460px; width: 200px; height: 15px; background-color: rgba(255,255,255,.5); -webkit-transform: rotate(-45deg); -moz-transform: rotate(-45deg); -ms-transform: rotate(-45deg); -o-transform: rotate(-45deg); transform: rotate(-45deg); -webkit-animation: searchLights 6s ease-in 0s infinite; -o-animation: searchLights 6s ease-in 0s infinite; animation: searchLights 6s ease-in 0s infinite;}@-moz-keyframes searchLights{50%{left: -100px; top: 0;} 65%{left: 120px; top: 100px;}}@keyframes searchLights{40%{left: -100px; top: 0;} 60%{left: 120px; top: 100px;} 80%{left: -100px; top: 0px;}}
+
+/*评论背景图*/
+textarea#comment {background-color:transparent;background:linear-gradient(rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05)),url(http://tp.iu00.cn/2023/04/09/5a932c6795d01.png) right 10px bottom 10px no-repeat;-moz-transition:ease-in-out 0.45s;-webkit-transition:ease-in-out 0.45s;-o-transition:ease-in-out 0.45s;-ms-transition:ease-in-out 0.45s;transition:ease-in-out 0.45s;}
+textarea#comment:focus {background-position-y:789px;-moz-transition:ease-in-out 0.45s;-webkit-transition:ease-in-out 0.45s;-o-transition:ease-in-out 0.45s;-ms-transition:ease-in-out 0.45s;transition:ease-in-out 0.45s;}
+
+/*滚动条显示样式*/
+::-webkit-scrollbar-thumb{
+   background-color:#c0c4cc;  /*更改喜欢的十六进制颜色*/
+   height:50px;
+   outline-offset:-2px;
+   outline:2px solid #fff;
+   -webkit-border-radius:4px;
+   border: 2px solid #fff;
+}
+/*滚动条大小*/
+::-webkit-scrollbar{
+   width:6px;
+   height:8px;
+}
+/*滚动框背景样式*/
+::-webkit-scrollbar-track-piece{
+   background-color:#fff;
+   -webkit-border-radius:0;
+}
+
+/***日间主题模式***/
+body {
+    background-image: url("https://api.bvipc.com/img/img/bt.jpg");/**这里改为你自己的图片地址**/
+    background-position-x: center;
+    background-position-y: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    --background: rgb(255 255 255 / 75%);
+}
+/***夜间主题模式***/
+.dark-theme {
+    background-position-x: center;
+    background-position-y: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-image: url("https://api.bvipc.com/img/img/yw.jpg");/**这里改为你自己的图片地址**/
+    background-size: cover;
+    --background: #232323;
+}
+
+
+/*幻灯片全屏自适应*/
+.new-swiper {
+    --pc-height: calc(100vh);
+    --m-height: auto;
+    --max-height: auto;
+    --min-height: auto;
+}
+/*搜索栏改上移缩小为消失*/
+.line-form-input:focus~.scale-placeholder, .header-slider-search .scale-placeholder.is-focus {
+    font-size: 12px;
+    color: #fff;
+    display: none;
+}.enlighter-default .enlighter{max-height:400px;overflow-y:auto !important;}.posts-item .item-heading>a {font-weight: bold;color: unset;}@media (max-width:640px) {
+		.meta-right .meta-like{
+			display: unset !important;
+		}
+	}
