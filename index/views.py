@@ -1,5 +1,6 @@
-from django.shortcuts import render HttpResponse
+from django.shortcuts import render
+from django.http import HttpResponse
 
 # Create your views here.
-def index :
-    HttpResponse("index,not finished")
+def index (request) :
+    return HttpResponse("index,not finished")

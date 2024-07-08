@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.http import HttpResponse
 # 认证模块
 from django.contrib import auth
 from loginportal import models
@@ -11,7 +12,7 @@ def login(request):
         next=request.GET.get("next")
         if next:
             request.session["next"] = next
-            return render(request, 'login.html', {'next':next}))
+            return render(request, 'login.html', {'next':next})
 
         return render(request, 'login.html')
     elif request.method == 'POST':
@@ -31,27 +32,36 @@ def login(request):
             #if valid_num.upper() != keep_str.upper():
             #    return render(request, 'login.html', {'error': '验证码错误'})
                 #验证码
-
+            if user_obj :
+                print("用户名密码正确")
 
 
             if not user_obj :
-                user_obj = auth.authenticate(email=username, password=password)
+                obj = User.objects.filter(email=username).first()
+                if obj :
+                    print(obj.username)
+                    user_obj = auth.authenticate(username=obj.username, password=password)
                 #邮箱登录
+                if user_obj :
+                    print("邮箱登录成功")
+
+                if not user_obj :
+                    print("邮箱登录失败")
 
 
             if not user_obj :
                 return render(request, 'login.html', {'error': '用户名或密码错误'})
                 #用户名或密码验证
-                obj = models.UserExtra.objects.filter(BaseInfo=User_obj).first()
-                if obj.disabled  :
-                    return render(request, 'login.html', {'error': '该用户已被封号'})
 
-                path = request.session.get('next') or "/index/"
-                del request.session["next"]
-                print(path)
+            if user_obj.is_active == False :
+                return render(request, 'login.html', {'error': '该用户已被封号'})
 
-                auth.login(request, user_obj)
-                return redirect(path)
+                #path = request.session.get('next') or "/index/"
+                #del request.session["next"]
+            print("登陆成功")
+
+            auth.login(request, user_obj)
+            return HttpResponse("登录成功")
 
 
 
@@ -62,9 +72,14 @@ def signup(request):
         username = request.POST.get('username')
         useremail= request.POST.get('useremail')
         password = request.POST.get('password')
+        password2 = request.POST.get('password2')
+        print(useremail)
         if  User.objects.filter(username=username).exists():
                 return render(request, 'signup.html', {'error': '用户名已存在'})
-        obj = User.objects.create_user (username=username, password=password, email=useremail)
-        models.UserExtra.objects.create(BaseInfo = obj, sth_to_say = "这个人很懒，什么也没有留下", level = 0, coin = 0, type="")
+        if password != password2:
+            return render(request, 'signup.html', {'error': '两次密码不一致'})
+        obj = User.objects.create_user (username=username,  email= useremail, password=password, is_active=True)
+        models.UserExtra.objects.create(BaseInfo = obj, sth_to_say="", level=0, coin=0, type="普通用户")
+        print(obj.email)
         auth.login(request, obj)
         return render(request, 'signup.html', {'success': '注册成功'})

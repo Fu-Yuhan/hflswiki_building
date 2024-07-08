@@ -17,12 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from loginportal import urls as loginurl
-from index import urls as indexs
+from index import urls as indexes
 from article import urls as articleviewer
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('login.php/', include(loginurl)),
     path('index/',include(indexes)),
-    path('article/',include(articles))
+    path('article/',include(articleviewer)),
 ]
 #urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)#

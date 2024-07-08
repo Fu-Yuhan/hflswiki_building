@@ -16,4 +16,4 @@ class UserExtra(models.Model):
     #followers = models.ManyToManyField("self", related_name="followed_by", blank=True)
     #followed_by = models.ManyToManyField("self", related_name="followers", blank=True)
     type = models.CharField(max_length=20, null=True)
-    disabled = models.BooleanField(default=False)
+    #    avatar = models.ImageField(upload_to='images/', null=True)
