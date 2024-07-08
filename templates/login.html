@@ -4,7 +4,6 @@
     <title>Login</title>>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" id="wp-block-library-css" href="https://bvipc.com/wp-includes/css/dist/block-library/style.min.css?ver=6.5.3" type="text/css" media="all">
     <link href="/static/css/bootstrap.css" rel="stylesheet">
     <script src="/static/js/bootstrap.js"></script>
     <script src="/static/js/jquery.min.js"></script>
@@ -25,6 +24,9 @@
         #loginbox {
             margin-top: 100px;
         }
+        .formgroup {
+            border-radius: 20px;
+        }
     </style>
 </head>
 <body>
@@ -44,6 +46,7 @@
                         <label for="password">密码</label>
                         <input type="password" class="form-control" id="password" name="pwd" required>
                     </div>
+                    <i class="line-form-line"></i>
                     {% if error %}
                         <div class="alert alert-danger">
                             {{ error }}
@@ -60,4 +63,9 @@
         </div>
     </div>
 </body>
+<script type="text/javascript">
+
+
+
+</script>
 </html>
