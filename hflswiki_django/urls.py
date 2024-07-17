@@ -22,7 +22,7 @@ from article import urls as articleviewer
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('login.php/', include(loginurl)),
-    path('index/',include(indexes)),
-    path('article/',include(articleviewer)),
+    #path('index/',include(indexes)),
+    #path('article/',include(articleviewer)),
 ]
 #urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)#

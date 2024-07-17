@@ -5,7 +5,7 @@ from django.contrib import auth
 from loginportal import models
 # 对应数据库
 from django.contrib.auth.models import User
-
+from loginportal.function import getusername
 # Create your views here.
 def login(request):
     if request.method == 'GET':
@@ -83,3 +83,23 @@ def signup(request):
         print(obj.email)
         auth.login(request, obj)
         return render(request, 'signup.html', {'success': '注册成功'})
+def password_reset(request):
+    if request.method == 'GET':
+        return render(request, 'password_reset.html')
+    elif request.method == 'POST':
+        email = request.POST.get('email')
+        # 这里需要添加密码重置的逻辑
+        username = getusername("email",email)
+        OK=1
+        # ...
+        if OK==1:
+
+            return render(request, 'password_reset.html', {'success': '重置成功'})
+
+    return render(request, 'password_reset.html', {'error': '验证码错误'})
+
+
+
+
+
+
